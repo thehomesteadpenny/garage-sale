@@ -1,0 +1,26 @@
+{
+  "name": "garage-sale",
+  "main": "worker/index.ts",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./dist/client",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": ["/api/*", "/photos/*"]
+  },
+  // No resource IDs on purpose: Wrangler creates the database and photo
+  // storage in the deployer's own account on first deploy.
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "garage-sale-data",
+      "migrations_dir": "migrations","database_id": "6ef06a28-0c21-41ab-afb4-f6192b408f0a"
+    }
+  ],
+  "kv_namespaces": [
+    {
+      "binding": "PHOTOS","id": "5970d093ba654197adbc54a5ec2f5177"
+    }
+  ],
+  "observability": { "enabled": true }
+}
